@@ -1,0 +1,7 @@
+/* certs */
+.certs{display:grid;gap:12px}
+.cert{display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px 22px;text-decoration:none;transition:transform .2s,border-color .2s,background .2s}
+.cert:hover{border-color:var(--violet);transform:translateX(6px)}
+.cert .no{font-family:var(--f-display);font-size:22px;color:var(--violet);width:44px}
+.cert b{display:block;font-size:18px}.cert span{color:var(--muted);font-size:15px}
+.cert .go{font-size:22px;transition:transform .2s}.cert:hover .go{transform:translate(4px,-4px)}

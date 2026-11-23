@@ -1,0 +1,13 @@
+/* nav */
+.nav{position:sticky;top:max(12px,env(safe-area-inset-top,0px));z-index:20;display:flex;justify-content:space-between;align-items:center;gap:12px;
+  margin-top:16px;padding:8px 8px 8px 20px;background:color-mix(in srgb,var(--surface) 88%,transparent);backdrop-filter:blur(10px);
+  border:1px solid var(--line);border-radius:99px}
+.nav strong{font-family:var(--f-display);font-size:14px;white-space:nowrap}
+.nav ul{display:flex;gap:2px;list-style:none;margin:0;padding:0}
+.nav li a{display:block;padding:8px 14px;border-radius:99px;text-decoration:none;font-weight:500;font-size:15px;color:var(--muted)}
+.nav li a:hover,.nav li a.on{background:var(--ink);color:var(--bg)}
+.icon-btn{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;display:grid;place-items:center;font-size:18px}
+.icon-btn:hover{border-color:var(--ink)}
+@media(max-width:760px){.nav ul{display:none}}
+
+.nav-dot{color:var(--accent)}

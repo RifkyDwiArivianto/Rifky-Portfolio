@@ -1,0 +1,39 @@
+/* projects */
+.project{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center;margin-bottom:56px}
+.project.flip .stage{order:2}
+.stage{position:relative;border:2px solid var(--ink);border-radius:22px;background:var(--surface);cursor:pointer;overflow:hidden;padding:0;font:inherit;color:inherit;display:block;width:100%;min-width:0;
+  --mx:50%;--my:50%}
+.stage::after{content:"";position:absolute;inset:0;background:radial-gradient(260px circle at var(--mx) var(--my),color-mix(in srgb,var(--accent) 22%,transparent),transparent 60%);opacity:0;transition:opacity .25s;pointer-events:none}
+.stage:hover::after{opacity:1}
+.stage .shot-wide{display:block;height:340px;overflow:hidden;padding:28px 28px 0}
+.stage .shot-wide img{width:100%;border-radius:10px 10px 0 0;border:1px solid var(--line);display:block;transition:transform .5s}
+.stage:hover .shot-wide img{transform:translateY(-10px) scale(1.02)}
+.phones{height:380px;overflow:hidden;display:flex;gap:14px;justify-content:center;align-items:flex-start;padding:26px 20px 0;perspective:900px}
+.phones img{width:30%;max-width:160px;border-radius:20px 20px 0 0;border:1px solid var(--line);display:block;transition:transform .45s}
+.phones img:nth-child(2){width:34%;max-width:182px;margin-top:-6px}
+.phones img:nth-child(1){margin-top:22px}.phones img:nth-child(3){margin-top:22px}
+.stage:hover .phones img:nth-child(1){transform:translateY(-12px) rotateY(10deg)}
+.stage:hover .phones img:nth-child(2){transform:translateY(-18px)}
+.stage:hover .phones img:nth-child(3){transform:translateY(-12px) rotateY(-10deg)}
+.stage .open{position:absolute;right:14px;bottom:14px;background:var(--ink);color:var(--bg);padding:7px 14px;border-radius:99px;font-size:14px;font-weight:700;z-index:1}
+.pnum{font-family:var(--f-mono);font-size:13px;color:var(--accent);font-weight:600}
+.project h3{font-size:clamp(22px,3vw,32px);margin:0 0 6px}
+.org{color:var(--muted);margin:0 0 14px;font-weight:500}
+.tags{display:flex;gap:8px;flex-wrap:wrap;list-style:none;margin:18px 0 0;padding:0}
+.tags li{font-family:var(--f-mono);font-size:13px;border:1px solid var(--ink);border-radius:8px;padding:3px 10px;background:var(--surface)}
+.roles{margin:14px 0 0;padding:0;list-style:none;display:grid;gap:6px}
+.roles li{display:flex;gap:10px;align-items:baseline}
+.roles li::before{content:"→";color:var(--accent);font-weight:700}
+
+/* next/image menulis atribut width/height; biarkan CSS yang menentukan rasio */
+.stage .shot-wide img,.phones img{height:auto}
+
+@media(max-width:860px){
+  .project{grid-template-columns:1fr}
+  .project.flip .stage{order:0}
+}
+@media(max-width:560px){
+  .stage .shot-wide{height:200px;padding:18px 16px 0}
+  .phones{height:300px;padding:20px 12px 0}
+  .stage .open{right:10px;bottom:10px}
+}

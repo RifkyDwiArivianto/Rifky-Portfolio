@@ -1,0 +1,15 @@
+/* timeline */
+.tl{list-style:none;margin:0;padding:0 0 0 0;position:relative;display:grid;gap:16px}
+.tl::before{content:"";position:absolute;left:11px;top:8px;bottom:8px;width:2px;background:var(--ink)}
+.tl li{position:relative;padding-left:48px;transition:opacity .25s}
+.tl li::before{content:"";position:absolute;left:3px;top:24px;width:18px;height:18px;border-radius:50%;background:var(--bg);border:3px solid var(--ink)}
+.tl li[data-k="kerja"]::before{border-color:var(--accent)}
+.tl li[data-k="studi"]::before{border-color:var(--violet)}
+.tl li[hidden]{display:none}
+.tcard{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px 22px;display:grid;grid-template-columns:170px 1fr auto;gap:8px 24px;align-items:center;transition:border-color .2s,transform .2s}
+.tcard:hover{border-color:var(--ink);transform:translateX(4px)}
+.tcard time{font-family:var(--f-mono);font-size:13px;color:var(--muted)}
+.tcard h3{font-family:var(--f-body);font-size:19px;letter-spacing:0}
+.tcard p{margin:0;color:var(--muted)}
+.tcard .acts{display:flex;gap:8px;flex-wrap:wrap}
+@media(max-width:760px){.tcard{grid-template-columns:1fr}}

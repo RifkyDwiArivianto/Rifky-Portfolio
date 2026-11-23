@@ -1,0 +1,13 @@
+/* contact */
+.contact{margin-top:96px;background:var(--ink);color:var(--bg);border-radius:28px;padding:clamp(28px,6vw,64px);position:relative;overflow:hidden}
+.contact h2{font-size:clamp(30px,6vw,64px);line-height:1.02;max-width:14ch}
+.contact h2 em{font-style:normal;color:var(--accent)}
+.contact p{max-width:48ch;margin:18px 0 26px;opacity:.8}
+.mail{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.mail code{font-family:var(--f-mono);font-size:clamp(14px,2.4vw,19px);background:color-mix(in srgb,var(--bg) 14%,transparent);padding:12px 16px;border-radius:12px;overflow-wrap:anywhere}
+.contact .btn{border-color:var(--bg);color:var(--bg)}
+.contact .btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.loc{font-family:var(--f-mono);font-size:13px;opacity:.7;margin-top:26px}
+footer{padding:28px 0 8px;font-family:var(--f-mono);font-size:12px;color:var(--muted);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+
+.contact .eyebrow{color:inherit;opacity:.7}
