@@ -66,8 +66,8 @@
 /* varian kecil yang dulu berupa inline style */
 .lead--tight{margin-bottom:14px}
 .tagline--tight{margin:0 0 4px}
-.tags--flush{margin:0 0 26px}
-.tags--tools{margin-top:8px}
+.tags.tags--flush{margin:0 0 26px}
+.tags.tags--tools{margin-top:8px}
 
 @media(max-width:860px){
   .hero{grid-template-columns:1fr}
