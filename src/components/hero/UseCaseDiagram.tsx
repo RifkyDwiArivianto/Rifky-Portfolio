@@ -23,7 +23,7 @@ export function UseCaseDiagram({ active, onPick }: UseCaseDiagramProps) {
   return (
     <svg
       className="uc"
-      viewBox="0 0 480 372"
+      viewBox="0 0 480 412"
       role="group"
       aria-label="Diagram use case sistem diagnosa penyimpangan produk"
     >
@@ -57,7 +57,7 @@ export function UseCaseDiagram({ active, onPick }: UseCaseDiagramProps) {
             <line x1={actor.x} y1={actor.y + 10} x2={actor.x - 12} y2={actor.y + 28} className={cls} />
             <line x1={actor.x} y1={actor.y + 10} x2={actor.x + 12} y2={actor.y + 28} className={cls} />
             {actor.label.map((line, i) => (
-              <text key={line} x={actor.x} y={actor.y + 42 + i * 13} className="act-t">
+              <text key={line} x={actor.x} y={actor.y + 52 + i * 19} className="act-t">
                 {line}
               </text>
             ))}
@@ -67,7 +67,7 @@ export function UseCaseDiagram({ active, onPick }: UseCaseDiagramProps) {
 
       {/* use case (elips, bisa diklik) */}
       {useCases.map((useCase, i) => {
-        const textY = useCase.y + (useCase.title.length > 1 ? -2 : 4);
+        const textY = useCase.y + (useCase.title.length > 1 ? -3 : 6);
         return (
           <g
             key={useCase.url}
@@ -81,7 +81,7 @@ export function UseCaseDiagram({ active, onPick }: UseCaseDiagramProps) {
           >
             <ellipse cx={230} cy={useCase.y} rx={80} ry={30} className="el" />
             {useCase.title.map((line, k) => (
-              <text key={line} x={230} y={textY + k * 13}>
+              <text key={line} x={230} y={textY + k * 20}>
                 {line}
               </text>
             ))}

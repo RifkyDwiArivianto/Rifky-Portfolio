@@ -8,9 +8,9 @@ export const projects: Project[] = [
     title: "Sistem Diagnosa Penyimpangan Produk",
     org: "PT. Metinca Prima Industrial Works · divisi Quality Assurance",
     description:
-      "Aplikasi web internal yang mendiagnosa penyimpangan produk dengan metode Certainty Factor. Saya merancang alur sistem, membangun antarmuka, dan mengelola databasenya.",
+      "Aplikasi web internal yang mendiagnosa penyimpangan produk dengan metode Certainty Factor.",
     roles: ["Merancang alur sistem", "Membangun antarmuka", "Mengelola database"],
-    tools: ["Laravel", "MySQL", "VS Code", "Enterprise Architect"],
+    tools: ["Laravel", "MySQL", "Enterprise Architect"],
     preview: "wide",
     previewImages: 1,
     gallery: [

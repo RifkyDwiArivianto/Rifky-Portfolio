@@ -1,33 +1,24 @@
-*{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:90px}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.6;
-  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-/* latar: grid tipis dan samar */
-body{background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:32px 32px}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth;scroll-padding-top:max(88px,calc(env(safe-area-inset-top,0px) + 76px));overflow-x:clip}
+html.lock{overflow:hidden}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:var(--t-m);line-height:1.6;overflow-x:clip;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:max(24px,env(safe-area-inset-bottom,0px));
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  background-image:radial-gradient(900px 500px at 85% -5%,color-mix(in srgb,var(--accent) 10%,transparent),transparent 70%),linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:100% 100%,32px 32px,32px 32px}
+img{max-width:100%}
 a{color:inherit}
 :focus-visible{outline:3px solid var(--violet);outline-offset:3px;border-radius:6px}
-.wrap{max-width:1120px;margin:0 auto;padding-block:0 40px}
+.wrap{max-width:1200px;margin:0 auto;padding-block:0 var(--sp-4)}
 h1,h2,h3{font-family:var(--f-display);font-weight:700;margin:0;text-wrap:balance;letter-spacing:-.02em}
-.mono{font-family:var(--f-mono)}
-.eyebrow{font-family:var(--f-mono);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:0 0 14px;display:flex;gap:10px;align-items:center}
-.eyebrow::before{content:"";width:28px;height:2px;background:var(--accent)}
+.eyebrow{font-family:var(--f-mono);font-size:var(--t-s);letter-spacing:.04em;color:var(--muted);margin:0 0 10px;display:flex;gap:10px;align-items:center}
+.eyebrow::before{content:"";width:26px;height:2px;background:var(--accent);flex:none}
 .progress{position:fixed;left:0;top:0;height:3px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:var(--accent);z-index:30}
-
-
-/* sections */
-section{padding-top:96px}
-.sec-head{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:30px}
-.sec-head h2{font-size:clamp(26px,4vw,42px)}
-
-
-/* tabs */
-.tabs{display:flex;gap:6px;flex-wrap:wrap}
-.tab{font:inherit;font-size:15px;font-weight:700;padding:8px 16px;border-radius:99px;border:1px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer}
-.tab[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
-.tab:hover{border-color:var(--accent)}
-
-/* varian kecil yang dulu berupa inline style */
-.eyebrow--sm{margin:0 0 8px}
-.eyebrow--tools{margin:18px 0 0}
+/* seksi */
+section{padding-top:var(--section)}
+.sec-head{margin-bottom:var(--sp-4)}
+.sec-head h2{font-size:var(--t-xl)}
+.intro{color:var(--muted);max-width:52ch;margin:var(--sp-2) 0 0;font-size:var(--t-m)}
 
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}html{scroll-behavior:auto}}
+html.tx *{transition:background-color .2s,color .2s,border-color .2s}

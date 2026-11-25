@@ -1,20 +1,16 @@
-import type { ReactNode } from "react";
-
 interface SectionHeadProps {
   eyebrow: string;
   title: string;
-  /** isi sisi kanan, mis. tab filter */
-  children?: ReactNode;
+  /** kalimat pengantar di bawah judul */
+  intro?: string;
 }
 
-export function SectionHead({ eyebrow, title, children }: SectionHeadProps) {
+export function SectionHead({ eyebrow, title, intro }: SectionHeadProps) {
   return (
     <div className="sec-head">
-      <div>
-        <p className="eyebrow">{eyebrow}</p>
-        <h2>{title}</h2>
-      </div>
-      {children}
+      <p className="eyebrow">{eyebrow}</p>
+      <h2>{title}</h2>
+      {intro && <p className="intro">{intro}</p>}
     </div>
   );
 }

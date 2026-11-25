@@ -4,16 +4,19 @@ import { certificates } from "@/data/certificates";
 export function CertificatesSection() {
   return (
     <section id="sertifikat">
-      <SectionHead eyebrow="Sertifikat" title="Sertifikat belajar" />
+      <SectionHead eyebrow="Sertifikat" title="Sertifikat belajar" intro="Klik kartu untuk membuka dokumen sertifikat." />
       <div className="certs">
         {certificates.map((cert) => (
           <a key={cert.mark} className="cert" href={cert.url} target="_blank" rel="noopener noreferrer">
-            <span className="no">{cert.mark}</span>
-            <div>
-              <b>{cert.title}</b>
-              <span>{cert.issuer}</span>
+            <div className="cert-top">
+              <span className="no">{cert.mark}</span>
+              {cert.category && <span className="cat">{cert.category}</span>}
             </div>
-            <span className="go">↗</span>
+            <div className="meta">
+              <b>{cert.title}</b>
+              {cert.issuer && <span>{cert.issuer}</span>}
+            </div>
+            <span className="go">Buka sertifikat ↗</span>
           </a>
         ))}
       </div>

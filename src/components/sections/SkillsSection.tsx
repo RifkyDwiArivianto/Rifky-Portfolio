@@ -1,46 +1,35 @@
-"use client";
-
-import { useState } from "react";
-import { FilterTabs } from "@/components/ui/FilterTabs";
-import { SectionHead } from "@/components/ui/SectionHead";
 import { skillGroups } from "@/data/skills";
-import type { SkillGroupId } from "@/types";
 
-type Filter = "all" | SkillGroupId;
-
-const FILTERS = [
-  { value: "all", label: "Semua" },
-  { value: "ah", label: "Keahlian" },
-  { value: "al", label: "Peralatan" },
-] as const satisfies readonly { value: Filter; label: string }[];
-
-export function SkillsSection() {
-  const [filter, setFilter] = useState<Filter>("all");
-
+/** Kolom kanan bagian "Pengalaman": keahlian dan alat. Tingginya mengikuti kolom garis waktu. */
+export function SkillsColumn() {
   return (
-    <section id="kemampuan">
-      <SectionHead eyebrow="Kemampuan" title="Keahlian dan peralatan">
-        <FilterTabs label="Filter keahlian dan peralatan" options={FILTERS} value={filter} onChange={setFilter} />
-      </SectionHead>
-
-      <div className="skills skills--wide">
+    <div id="kemampuan">
+      <div className="sec-head">
+        <p className="eyebrow">Kemampuan</p>
+        <h2>Keahlian dan alat</h2>
+        <p className="intro">Ketuk salah satu chip untuk menyorot proyek &amp; pengalaman terkait.</p>
+      </div>
+      <div className="skills">
         {skillGroups.map((group) => (
-          <div key={group.id} className={`sk${filter !== "all" && filter !== group.id ? " dim" : ""}`}>
+          <div key={group.id} className="sk">
             <h3>{group.title}</h3>
             <ul>
               {group.items.map((item) => (
-                <li
-                  key={item.label}
-                  className={`chip${item.learning ? " learn" : ""}`}
-                  title={item.learning ? "Sedang dipelajari" : undefined}
-                >
-                  {item.label}
+                <li key={item.label}>
+                  <button
+                    type="button"
+                    className={`chip${item.learning ? " learn" : ""}`}
+                    aria-pressed="false"
+                    title={item.learning ? "Sedang dipelajari" : undefined}
+                  >
+                    {item.label}
+                  </button>
                 </li>
               ))}
             </ul>
           </div>
         ))}
       </div>
-    </section>
+    </div>
   );
 }

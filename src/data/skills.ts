@@ -3,7 +3,7 @@ import type { SkillGroup } from "@/types";
 export const skillGroups: SkillGroup[] = [
   {
     id: "ah",
-    title: "Keahlian · yang saya kuasai",
+    title: "Keahlian",
     items: [
       { label: "Web development" },
       { label: "Manajemen database" },
@@ -13,14 +13,14 @@ export const skillGroups: SkillGroup[] = [
   },
   {
     id: "al",
-    title: "Peralatan · yang saya pakai",
+    title: "Peralatan",
     items: [
       { label: "Laravel" },
       { label: "MySQL" },
       { label: "VS Code" },
       { label: "Enterprise Architect" },
       { label: "Figma" },
-      { label: "Next.js · belajar", learning: true },
+      { label: "Next.js (belajar)", learning: true },
     ],
   },
 ];

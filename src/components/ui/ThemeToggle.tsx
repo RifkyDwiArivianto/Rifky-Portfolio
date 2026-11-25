@@ -1,23 +1,28 @@
 "use client";
 
-const STORAGE_KEY = "rda-theme";
+import { toggleTheme } from "@/lib/theme";
 
-export function ThemeToggle() {
-  const toggle = () => {
-    const root = document.documentElement;
-    const explicit = root.getAttribute("data-theme");
-    const isDark = explicit ? explicit === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const next = isDark ? "light" : "dark";
-    root.setAttribute("data-theme", next);
-    try {
-      localStorage.setItem(STORAGE_KEY, next);
-    } catch {
-      /* penyimpanan tidak tersedia, tema tetap berlaku untuk sesi ini */
-    }
-  };
+interface ThemeToggleProps {
+  /** "icon" = tombol bulat di navbar (desktop), "menu" = tombol lebar di menu layar penuh */
+  variant?: "icon" | "menu";
+}
+
+export function ThemeToggle({ variant = "icon" }: ThemeToggleProps) {
+  if (variant === "menu") {
+    return (
+      <button className="btn ghost" type="button" onClick={toggleTheme}>
+        Ganti tema ◐
+      </button>
+    );
+  }
 
   return (
-    <button className="icon-btn" type="button" aria-label="Ganti tema terang atau gelap" onClick={toggle}>
+    <button
+      className="icon-btn theme-btn"
+      type="button"
+      aria-label="Ganti tema terang atau gelap"
+      onClick={toggleTheme}
+    >
       ◐
     </button>
   );

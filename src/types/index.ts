@@ -35,12 +35,9 @@ export interface TimelineItem {
 }
 
 export interface Stat {
-  value: number;
-  decimals?: number;
+  value: string;
   label: string;
 }
-
-export type SkillGroupId = "ah" | "al";
 
 export interface SkillItem {
   label: string;
@@ -48,13 +45,15 @@ export interface SkillItem {
 }
 
 export interface SkillGroup {
-  id: SkillGroupId;
+  id: string;
   title: string;
   items: SkillItem[];
 }
 
 export interface Certificate {
+  /** label penerbit di bagian atas kartu */
   mark: string;
+  category?: string;
   title: string;
   issuer: string;
   url: string;

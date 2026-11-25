@@ -14,8 +14,8 @@ import "@/styles/certificates.css";
 import "@/styles/contact.css";
 import "@/styles/lightbox.css";
 
-const unbounded = Unbounded({ subsets: ["latin"], weight: ["500", "700"], variable: "--font-unbounded", display: "swap" });
-const hanken = Hanken_Grotesk({ subsets: ["latin"], weight: ["400", "500", "700"], variable: "--font-hanken", display: "swap" });
+const unbounded = Unbounded({ subsets: ["latin"], weight: ["700"], variable: "--font-unbounded", display: "swap" });
+const hanken = Hanken_Grotesk({ subsets: ["latin"], weight: ["400", "600", "700"], variable: "--font-hanken", display: "swap" });
 const jetbrains = JetBrains_Mono({ subsets: ["latin"], weight: ["400", "600"], variable: "--font-jetbrains", display: "swap" });
 
 export const metadata: Metadata = {

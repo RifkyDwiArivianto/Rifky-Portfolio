@@ -5,7 +5,7 @@ export const timeline: TimelineItem[] = [
     id: "frontend-metinca",
     kind: "kerja",
     period: "Des 2025 – Feb 2026",
-    title: "Developer Frontend",
+    title: "Web Developer",
     org: "PT. Metinca Prima Industrial Works",
     projectId: "diagnosa",
     proofUrl: "https://drive.google.com/file/d/1lcwLw64LeJKNXCA4JRqfnW-uoPRZNAbu/view?usp=drive_link",
@@ -24,7 +24,7 @@ export const timeline: TimelineItem[] = [
     kind: "studi",
     period: "Sep 2022 – Agu 2026",
     title: "S1 Sistem Informasi",
-    org: "Universitas Darma Persada · IPK 3,61",
+    org: "Universitas Darma Persada",
     proofUrl: "https://drive.google.com/file/d/1Iy3iX3E03_-uz3GpCc67whXqbAvSgl2k/view?usp=drive_link",
   },
 ];

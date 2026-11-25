@@ -14,12 +14,14 @@ export function ProjectCard({ project }: { project: Project }) {
             <li key={role}>{role}</li>
           ))}
         </ul>
-        <p className="eyebrow eyebrow--tools">Tools</p>
-        <ul className="tags tags--tools">
-          {project.tools.map((tool) => (
-            <li key={tool}>{tool}</li>
-          ))}
-        </ul>
+        <div className="toolrow">
+          <span className="lbl">Tools</span>
+          <ul className="tags">
+            {project.tools.map((tool) => (
+              <li key={tool}>{tool}</li>
+            ))}
+          </ul>
+        </div>
       </div>
     </article>
   );

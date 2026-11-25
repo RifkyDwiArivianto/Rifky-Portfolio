@@ -1,7 +1,14 @@
-/* certs */
-.certs{display:grid;gap:12px}
-.cert{display:grid;grid-template-columns:auto 1fr auto;gap:18px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px 22px;text-decoration:none;transition:transform .2s,border-color .2s,background .2s}
-.cert:hover{border-color:var(--violet);transform:translateX(6px)}
-.cert .no{font-family:var(--f-display);font-size:22px;color:var(--violet);width:44px}
-.cert b{display:block;font-size:18px}.cert span{color:var(--muted);font-size:15px}
-.cert .go{font-size:22px;transition:transform .2s}.cert:hover .go{transform:translate(4px,-4px)}
+/* sertifikat */
+.certs{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));gap:var(--sp-3)}
+.cert{display:flex;flex-direction:column;gap:var(--sp-2);min-height:165px;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:var(--sp-3);text-decoration:none;transition:transform .25s var(--ease),border-color .25s,box-shadow .25s,background-color .25s}
+.cert:hover{border-color:var(--violet);transform:translateY(-4px);box-shadow:5px 5px 0 var(--accent)}
+html.tx .cert{transition:transform .25s var(--ease),border-color .25s,box-shadow .25s,background-color .2s,color .2s}
+.cert-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.cert .cat{font-family:var(--f-mono);font-size:var(--t-xs);color:var(--muted);border:1px solid var(--line);border-radius:99px;padding:2px 9px}
+.cert .no{font-family:var(--f-mono);font-size:var(--t-s);font-weight:600;line-height:1;color:var(--violet)}
+.cert .meta{flex:1}
+.cert b{display:block;font-size:var(--t-m);line-height:1.35}.cert .meta span{color:var(--muted);font-size:var(--t-s)}
+.cert .meta span:empty{display:none}
+.cert .go{font-family:var(--f-mono);font-size:var(--t-s);font-weight:600;color:var(--violet);display:inline-flex;align-items:center;gap:4px;transition:transform .2s var(--ease),color .2s}
+.cert:hover .go{transform:translate(4px,-2px)}
+html.tx .cert .go{transition:transform .2s var(--ease),color .2s}

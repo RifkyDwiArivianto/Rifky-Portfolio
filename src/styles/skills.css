@@ -1,11 +1,11 @@
-/* skills */
-.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
-.sk{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px;transition:opacity .25s,border-color .2s,transform .2s;min-width:0}
-.sk:hover{border-color:var(--ink);transform:translateY(-3px)}
-.sk.dim{opacity:.25}
-.sk h3{font-family:var(--f-mono);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:12px}
-.sk ul{list-style:none;margin:0;padding:0;display:flex;gap:8px;flex-wrap:wrap}
-.chip{font:inherit;font-weight:500;font-size:15px;border:1px solid var(--ink);border-radius:10px;padding:5px 12px;background:var(--bg);color:var(--ink);cursor:default}
-.chip.learn{border-style:dashed}
-
-.skills--wide{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+/* kemampuan */
+.skills{display:grid;gap:var(--sp-2)}
+.sk{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:var(--sp-3);transition:opacity .25s,border-color .2s,transform .2s;min-width:0}
+.sk:hover{border-color:var(--ink)}
+.sk h3{font-family:var(--f-mono);font-size:var(--t-s);letter-spacing:.02em;color:var(--muted);font-weight:600;margin-bottom:var(--sp-2)}
+.sk ul{list-style:none;margin:0;padding:0;display:flex;gap:10px;flex-wrap:wrap}
+.chip{font:500 var(--t-s) var(--f-body);min-height:38px;border:1px solid transparent;border-radius:10px;padding:6px 13px;background:color-mix(in srgb,var(--ink) 8%,transparent);color:var(--ink);cursor:pointer;display:inline-flex;align-items:center}
+.chip:hover{border-color:var(--ink)}
+.chip.learn{border:1px dashed var(--muted);padding:5px 12px}
+.duo .skills{flex:1}
+@media(min-width:861px){.duo .skills{grid-template-rows:1fr 1fr}}
