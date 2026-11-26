@@ -4,7 +4,7 @@ import type { NextConfig } from "next";
 // jadi host Supabase perlu diizinkan untuk next/image.
 const supabaseHost = (() => {
   try {
-    return new URL(process.env.SUPABASE_URL ?? "").hostname;
+    return new URL(process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL || "").hostname;
   } catch {
     return null;
   }

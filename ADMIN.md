@@ -12,15 +12,16 @@ jadi halaman publik tidak pernah rusak.
 1. **Buat proyek Supabase** (gratis) di https://supabase.com.
 2. Buka **SQL Editor → New query**, tempel isi `supabase/schema.sql`, lalu **Run**.
    Ini membuat tabel `site_content` dan bucket gambar `portfolio`.
-3. Ambil **Project URL** dan **service_role key** di *Project Settings → API*.
-   Kunci `service_role` itu rahasia: hanya taruh di environment variable Vercel, jangan di kode atau chat.
-4. Di Vercel: **Settings → Environment Variables**, tambahkan empat nilai
+3. Ambil **Project URL** dan **secret key** (atau `service_role` key versi lama) di *Project Settings → API Keys*.
+   Kunci itu rahasia: hanya taruh di environment variable Vercel, jangan di kode atau chat.
+   Bila kamu memakai integrasi Vercel–Supabase, variabelnya dibuat otomatis dan langkah 3–4 bisa dilewati.
+4. Di Vercel: **Settings → Environment Variables**, pastikan ada empat nilai berikut
    (contohnya ada di `.env.example`):
 
    | Nama | Isi |
    | --- | --- |
    | `SUPABASE_URL` | Project URL |
-   | `SUPABASE_SERVICE_ROLE_KEY` | service_role key |
+   | `SUPABASE_SECRET_KEY` atau `SUPABASE_SERVICE_ROLE_KEY` | secret key / service_role key (salah satu) |
    | `ADMIN_PASSWORD` | kata sandi pilihanmu (minimal 8 karakter) |
    | `ADMIN_SESSION_SECRET` | teks acak minimal 16 karakter |
 
