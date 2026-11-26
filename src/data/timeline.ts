@@ -5,7 +5,7 @@ export const timeline: TimelineItem[] = [
     id: "frontend-metinca",
     kind: "kerja",
     period: "Des 2025 – Feb 2026",
-    title: "Web Developer",
+    title: "Web Developer (magang)",
     org: "PT. Metinca Prima Industrial Works",
     projectId: "diagnosa",
     proofUrl: "https://drive.google.com/file/d/1lcwLw64LeJKNXCA4JRqfnW-uoPRZNAbu/view?usp=drive_link",
