@@ -1,5 +1,6 @@
 :root{
   color-scheme:light;
+  --ease:cubic-bezier(.22,1,.36,1);
   --bg:#f3ead9; --surface:#fbf6ea; --ink:#26221c; --muted:#6a5e4c; --line:#d8c8a8;
   --accent:#1f6b4a; --accent-ink:#fbf6ea; --accent-soft:rgba(31,107,74,.12); --surface-2:#efe3cc;
   --violet:#1f6b4a; --grid:rgba(122,82,50,.06);

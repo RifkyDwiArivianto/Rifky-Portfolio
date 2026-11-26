@@ -1,10 +1,11 @@
 "use client";
 
 import { useEffect, useRef, type RefObject } from "react";
-import { navLinks, site } from "@/data/site";
+import { navLinks } from "@/data/site";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
 interface MobileMenuProps {
+  shortName: string;
   open: boolean;
   active: number;
   /** tombol hamburger, dipakai untuk mengembalikan fokus saat menu ditutup lewat Esc/✕ */
@@ -13,7 +14,7 @@ interface MobileMenuProps {
 }
 
 /** Menu layar penuh untuk layar ≤ 860px. Dirender di luar <nav> karena backdrop-filter pada nav mengunci elemen fixed. */
-export function MobileMenu({ open, active, openerRef, onClose }: MobileMenuProps) {
+export function MobileMenu({ shortName, open, active, openerRef, onClose }: MobileMenuProps) {
   const menuRef = useRef<HTMLDivElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
 
@@ -73,7 +74,7 @@ export function MobileMenu({ open, active, openerRef, onClose }: MobileMenuProps
     >
       <div className="menu-head">
         <strong>
-          {site.shortName}
+          {shortName}
           <span className="nav-dot">.</span>
         </strong>
         <button

@@ -1,8 +1,8 @@
 import { ProjectCard } from "@/components/projects/ProjectCard";
 import { SectionHead } from "@/components/ui/SectionHead";
-import { projects } from "@/data/projects";
+import type { Project } from "@/types";
 
-export function ProjectsSection() {
+export function ProjectsSection({ projects }: { projects: Project[] }) {
   return (
     <section id="proyek">
       <SectionHead

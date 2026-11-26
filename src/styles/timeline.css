@@ -9,7 +9,7 @@
 .tl::before{content:"";position:absolute;left:11px;top:8px;bottom:8px;width:2px;background:var(--ink)}
 .tl li{position:relative;padding-left:48px}
 .tl li::before{content:"";position:absolute;left:3px;top:28px;width:18px;height:18px;border-radius:50%;background:var(--bg);border:3px solid var(--ink)}
-.tl li[data-k="kerja"]::before{border-color:var(--accent)}
+.tl li[data-k="kerja"]::before,.tl li[data-k="magang"]::before{border-color:var(--accent)}
 .tl li[data-k="studi"]::before{border-color:var(--muted)}
 .tcard{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:var(--sp-3);display:grid;grid-template-columns:1fr auto;gap:6px var(--sp-3);align-items:center;transition:border-color .2s,transform .2s}
 .tcard:hover{border-color:var(--ink)}

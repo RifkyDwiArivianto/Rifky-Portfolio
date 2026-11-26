@@ -1,8 +1,15 @@
 "use client";
 
 import { createContext, useCallback, useContext, useMemo, useRef, useState, type ReactNode } from "react";
-import { getProject } from "@/data/projects";
+import type { GalleryImage } from "@/types";
 import { Lightbox } from "./Lightbox";
+
+/** Hanya data yang dibutuhkan galeri, supaya tidak mengirim seluruh data proyek dua kali ke browser. */
+export interface GalleryProject {
+  id: string;
+  title: string;
+  gallery: GalleryImage[];
+}
 
 interface GalleryContextValue {
   /** Buka galeri proyek. `opener` dipakai untuk mengembalikan fokus saat galeri ditutup. */
@@ -11,7 +18,7 @@ interface GalleryContextValue {
 
 const GalleryContext = createContext<GalleryContextValue | null>(null);
 
-export function GalleryProvider({ children }: { children: ReactNode }) {
+export function GalleryProvider({ projects, children }: { projects: GalleryProject[]; children: ReactNode }) {
   const [projectId, setProjectId] = useState<string | null>(null);
   const openerRef = useRef<HTMLElement | null>(null);
 
@@ -26,7 +33,7 @@ export function GalleryProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const value = useMemo(() => ({ openGallery }), [openGallery]);
-  const project = projectId ? getProject(projectId) : undefined;
+  const project = projectId ? projects.find((p) => p.id === projectId) : undefined;
 
   return (
     <GalleryContext.Provider value={value}>

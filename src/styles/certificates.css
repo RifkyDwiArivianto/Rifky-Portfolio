@@ -1,7 +1,8 @@
 /* sertifikat */
 .certs{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));gap:var(--sp-3)}
-.cert{display:flex;flex-direction:column;gap:var(--sp-2);min-height:165px;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:var(--sp-3);text-decoration:none;transition:transform .25s var(--ease),border-color .25s,box-shadow .25s,background-color .25s}
-.cert:hover{border-color:var(--violet);transform:translateY(-4px);box-shadow:5px 5px 0 var(--accent)}
+.cert{display:flex;flex-direction:column;gap:var(--sp-2);min-height:165px;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:var(--sp-3);text-decoration:none;box-shadow:0 0 0 var(--accent);transition:transform .25s var(--ease),border-color .25s,box-shadow .25s var(--ease),background-color .25s,color .2s}
+.cert:hover,.cert:focus-visible{border-color:var(--violet);transform:translateY(-4px);box-shadow:5px 5px 0 var(--accent)}
+.cert:active{transform:translateY(-1px);box-shadow:2px 2px 0 var(--accent);transition-duration:.1s}
 html.tx .cert{transition:transform .25s var(--ease),border-color .25s,box-shadow .25s,background-color .2s,color .2s}
 .cert-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
 .cert .cat{font-family:var(--f-mono);font-size:var(--t-xs);color:var(--muted);border:1px solid var(--line);border-radius:99px;padding:2px 9px}
@@ -10,5 +11,5 @@ html.tx .cert{transition:transform .25s var(--ease),border-color .25s,box-shadow
 .cert b{display:block;font-size:var(--t-m);line-height:1.35}.cert .meta span{color:var(--muted);font-size:var(--t-s)}
 .cert .meta span:empty{display:none}
 .cert .go{font-family:var(--f-mono);font-size:var(--t-s);font-weight:600;color:var(--violet);display:inline-flex;align-items:center;gap:4px;transition:transform .2s var(--ease),color .2s}
-.cert:hover .go{transform:translate(4px,-2px)}
+.cert:hover .go,.cert:focus-visible .go{transform:translate(4px,-2px)}
 html.tx .cert .go{transition:transform .2s var(--ease),color .2s}

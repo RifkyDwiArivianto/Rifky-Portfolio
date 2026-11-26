@@ -2,17 +2,17 @@ import type { TimelineItem } from "@/types";
 
 export const timeline: TimelineItem[] = [
   {
-    id: "frontend-metinca",
-    kind: "kerja",
+    id: "magang-metinca",
+    kind: "magang",
     period: "Des 2025 – Feb 2026",
-    title: "Web Developer",
+    title: "Web Developer (magang)",
     org: "PT. Metinca Prima Industrial Works",
     projectId: "diagnosa",
     proofUrl: "https://drive.google.com/file/d/1lcwLw64LeJKNXCA4JRqfnW-uoPRZNAbu/view?usp=drive_link",
   },
   {
     id: "uiux-cakra",
-    kind: "kerja",
+    kind: "magang",
     period: "Feb 2025 – Jul 2025",
     title: "UI/UX Designer (magang)",
     org: "PT. Cakra Wijaya Solusi",

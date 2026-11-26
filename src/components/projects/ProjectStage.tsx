@@ -9,6 +9,7 @@ import type { Project } from "@/types";
 export function ProjectStage({ project }: { project: Project }) {
   const { openGallery } = useGallery();
   const previews = project.gallery.slice(0, project.previewImages);
+  if (previews.length === 0) return null;
 
   const trackPointer = (e: PointerEvent<HTMLButtonElement>) => {
     const el = e.currentTarget;
@@ -37,9 +38,9 @@ export function ProjectStage({ project }: { project: Project }) {
         </span>
       ) : (
         <span className="phones">
-          {previews.map((image) => (
+          {previews.map((image, i) => (
             <Image
-              key={image.src}
+              key={`${image.src}-${i}`}
               src={image.src}
               alt=""
               width={image.width}

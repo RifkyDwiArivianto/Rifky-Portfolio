@@ -1,7 +1,7 @@
-import { site } from "@/data/site";
+import type { SiteInfo } from "@/types";
 import { UseCasePanel } from "./UseCasePanel";
 
-export function Hero() {
+export function Hero({ site }: { site: SiteInfo }) {
   const [first, second, ...rest] = site.name.split(" ");
 
   return (
@@ -15,8 +15,8 @@ export function Hero() {
         </h1>
         <p className="role">{site.role}</p>
         <ul className="tags hero-tags">
-          {site.heroTools.map((tool) => (
-            <li key={tool}>{tool}</li>
+          {site.heroTools.map((tool, i) => (
+            <li key={`${tool}-${i}`}>{tool}</li>
           ))}
         </ul>
         <p className="lead">{site.description}</p>

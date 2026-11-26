@@ -8,22 +8,26 @@ import { CertificatesSection } from "@/components/sections/CertificatesSection";
 import { ContactSection } from "@/components/sections/ContactSection";
 import { ProjectsSection } from "@/components/sections/ProjectsSection";
 import { PathSection } from "@/components/sections/PathSection";
+import { getContent } from "@/lib/content";
 
-export default function HomePage() {
+export default async function HomePage() {
+  const { site, stats, projects, timeline, skills, certificates } = await getContent();
+  const galleryProjects = projects.map(({ id, title, gallery }) => ({ id, title, gallery }));
+
   return (
-    <GalleryProvider>
+    <GalleryProvider projects={galleryProjects}>
       <ScrollProgress />
       <div className="wrap" id="top">
-        <Navbar />
+        <Navbar shortName={site.shortName} />
         <main>
-          <Hero />
-          <StatsBand />
-          <ProjectsSection />
-          <PathSection />
-          <CertificatesSection />
-          <ContactSection />
+          <Hero site={site} />
+          <StatsBand stats={stats} />
+          <ProjectsSection projects={projects} />
+          <PathSection timeline={timeline} skillGroups={skills} />
+          <CertificatesSection certificates={certificates} />
+          <ContactSection site={site} />
         </main>
-        <Footer />
+        <Footer site={site} />
       </div>
     </GalleryProvider>
   );

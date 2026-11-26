@@ -1,10 +1,42 @@
-# Rifky Dwi Arivianto — Portofolio (Next.js)
+# Rifky Dwi Arivianto — Portofolio
 
-Konversi dari `Rifky_Dwi_Arivianto_v1.html` ke Next.js (App Router + TypeScript).
-Tampilan dan perilaku mengikuti HTML v1 (menu layar penuh di HP, navbar yang bersembunyi saat scroll,
-toggle Rancang/Bangun di HP, skala font minimum 14px); yang berbeda hanya cara kodenya disusun.
+Halo, saya Rifky. Ini kode situs portofolio saya.
 
-## Menjalankan
+**Lihat situsnya: https://rifkyportfolio.vercel.app**
+
+## Tentang saya
+
+Web developer dan analis sistem, lulusan S1 Sistem Informasi Universitas Darma Persada (2026).
+Saya merancang dan membangun aplikasi web dengan Laravel dan MySQL, mengerjakan desain UI/UX
+dengan Figma, dan membangun antarmuka dengan Next.js.
+
+- **Magang Web Developer** — PT. Metinca Prima Industrial Works (Des 2025 – Feb 2026)
+- **Magang UI/UX Designer** — PT. Cakra Wijaya Solusi (Feb 2025 – Jul 2025)
+
+## Proyek yang ditampilkan
+
+- **Sistem Diagnosa Penyimpangan Produk** — aplikasi web internal untuk divisi Quality Assurance
+  yang mendiagnosa penyimpangan produk dengan metode Certainty Factor. Dibangun dengan Laravel
+  dan MySQL, dirancang dengan Enterprise Architect.
+- **Wanderbliss** — desain UI aplikasi perjalanan (layar login, rekomendasi, dan beranda
+  destinasi populer) di Figma.
+
+## Isi situs
+
+- Simulasi interaktif "dari rancangan ke halaman": klik use case, langsung lihat layar aplikasinya.
+- Galeri gambar proyek.
+- Pengalaman dan pendidikan dengan filter, keahlian, dan sertifikat.
+- Tema terang/gelap dan menu layar penuh di HP.
+- Penyusun pesan cepat ke Gmail atau WhatsApp.
+
+## Dibangun dengan
+
+Next.js 16 (App Router), React 19, TypeScript, dan CSS biasa dengan design token.
+Font lewat `next/font`, di-deploy di Vercel.
+
+## Menjalankan di komputer sendiri
+
+Butuh Node.js 20.9 atau lebih baru dan koneksi internet (font diunduh saat dev dan build).
 
 ```bash
 npm install
@@ -13,49 +45,11 @@ npm run build    # build produksi
 npm start        # jalankan hasil build
 ```
 
-Butuh Node.js 20.9 atau lebih baru. Font (Unbounded, Hanken Grotesk, JetBrains Mono)
-diunduh lewat `next/font/google` saat dev/build, jadi butuh koneksi internet saat itu.
+## Kontak
 
-## Struktur
+Saya sedang terbuka untuk peran yang membangun aplikasi web, menganalisis kebutuhan sistem,
+dan mengelola basis data.
 
-```
-public/images/projects/     gambar proyek (dulu base64 di dalam HTML)
-src/
-├─ app/
-│  ├─ layout.tsx            font, metadata, viewport, skrip tema, impor CSS
-│  └─ page.tsx              menyusun seluruh halaman
-├─ components/
-│  ├─ layout/               Navbar, MobileMenu, ScrollProgress, Footer, BackToTop
-│  ├─ hero/                 Hero, StatsBand, UseCasePanel, UseCaseDiagram, MockScreen
-│  ├─ projects/             ProjectCard, ProjectStage
-│  ├─ gallery/              GalleryProvider (state), Lightbox
-│  ├─ sections/             Projects, Path (Timeline + Skills), Certificates, Contact
-│  └─ ui/                   SectionHead, ThemeToggle
-├─ data/                    ISI KONTEN: ubah teks di sini, bukan di komponen
-│  ├─ site.ts               nama, peran, email, GitHub, menu navigasi
-│  ├─ projects.ts           proyek + gambar galeri
-│  ├─ timeline.ts           pengalaman dan pendidikan
-│  ├─ skills.ts             keahlian dan peralatan
-│  ├─ certificates.ts       sertifikat
-│  ├─ stats.ts              angka di hero
-│  └─ usecase.ts            data diagram use case dan contoh hasil diagnosa
-├─ hooks/useScrollSpy.ts    penanda menu aktif saat scroll
-├─ lib/theme.ts             ganti tema terang/gelap (dipakai tombol di navbar dan di menu HP)
-├─ styles/                  CSS dipisah per bagian (nama kelas sama seperti HTML asli)
-└─ types/index.ts           tipe data
-```
-
-## Cara mengubah
-
-- **Tambah proyek**: taruh gambar di `public/images/projects/`, lalu tambah satu objek di
-  `src/data/projects.ts` (isi lebar/tinggi gambar yang sebenarnya).
-- **Tambah pengalaman**: tambah objek di `src/data/timeline.ts`. Isi `projectId` bila ingin
-  tombol "Lihat proyek" muncul.
-- **Ganti warna/font/ukuran teks**: `src/styles/tokens.css` (skala teks `--t-s`, `--t-m`, `--t-l`, `--t-xl`, `--t-xxl`).
-
-## Catatan
-
-- Urutan impor CSS di `app/layout.tsx` menentukan cascade (aturan responsif ada di file
-  yang sama dengan komponennya). Jangan diacak.
-- Server Component dipakai untuk bagian statis; Client Component (`"use client"`) hanya untuk
-  yang interaktif: navbar, tema, galeri, diagram use case, tombol salin email.
+- Email: rifkydwiarivianto2022@gmail.com
+- LinkedIn: https://www.linkedin.com/in/rifky-dwi-arivianto-71606234a/
+- GitHub: https://github.com/RifkyDwiArivianto

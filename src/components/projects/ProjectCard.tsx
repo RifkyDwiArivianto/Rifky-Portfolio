@@ -10,15 +10,15 @@ export function ProjectCard({ project }: { project: Project }) {
         <p className="org">{project.org}</p>
         <p>{project.description}</p>
         <ul className="roles">
-          {project.roles.map((role) => (
-            <li key={role}>{role}</li>
+          {project.roles.map((role, i) => (
+            <li key={`${role}-${i}`}>{role}</li>
           ))}
         </ul>
         <div className="toolrow">
           <span className="lbl">Tools</span>
           <ul className="tags">
-            {project.tools.map((tool) => (
-              <li key={tool}>{tool}</li>
+            {project.tools.map((tool, i) => (
+              <li key={`${tool}-${i}`}>{tool}</li>
             ))}
           </ul>
         </div>

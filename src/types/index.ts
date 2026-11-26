@@ -21,7 +21,7 @@ export interface Project {
   gallery: GalleryImage[];
 }
 
-export type TimelineKind = "kerja" | "studi";
+export type TimelineKind = "magang" | "kerja" | "studi";
 
 export interface TimelineItem {
   id: string;
@@ -31,7 +31,8 @@ export interface TimelineItem {
   org: string;
   /** id proyek yang dibuka lewat tombol "Lihat proyek" */
   projectId?: string;
-  proofUrl: string;
+  /** tautan dokumen bukti; tombol "Lihat dokumen" hanya muncul bila diisi */
+  proofUrl?: string;
 }
 
 export interface Stat {
@@ -74,3 +75,19 @@ export interface UseCaseActor {
 }
 
 export type ReviewStatus = "Menunggu" | "Disetujui" | "Ditolak";
+
+export interface SiteInfo {
+  name: string;
+  shortName: string;
+  url: string;
+  role: string;
+  description: string;
+  email: string;
+  github: string;
+  linkedin: string;
+  whatsapp: { href: string; label: string };
+  year: number;
+  heroTools: string[];
+  /** paragraf di bagian Kontak */
+  contactNote: string;
+}

@@ -20,7 +20,7 @@ export const skillGroups: SkillGroup[] = [
       { label: "VS Code" },
       { label: "Enterprise Architect" },
       { label: "Figma" },
-      { label: "Next.js (belajar)", learning: true },
+      { label: "Next.js" },
     ],
   },
 ];

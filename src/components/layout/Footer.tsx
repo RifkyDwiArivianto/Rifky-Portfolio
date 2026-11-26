@@ -1,7 +1,7 @@
-import { site } from "@/data/site";
+import type { SiteInfo } from "@/types";
 import { BackToTop } from "./BackToTop";
 
-export function Footer() {
+export function Footer({ site }: { site: Pick<SiteInfo, "name" | "year"> }) {
   return (
     <footer>
       <span>

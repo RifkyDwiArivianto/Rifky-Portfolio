@@ -1,13 +1,13 @@
 import { SectionHead } from "@/components/ui/SectionHead";
-import { certificates } from "@/data/certificates";
+import type { Certificate } from "@/types";
 
-export function CertificatesSection() {
+export function CertificatesSection({ certificates }: { certificates: Certificate[] }) {
   return (
     <section id="sertifikat">
       <SectionHead eyebrow="Sertifikat" title="Sertifikat belajar" intro="Klik kartu untuk membuka dokumen sertifikat." />
       <div className="certs">
-        {certificates.map((cert) => (
-          <a key={cert.mark} className="cert" href={cert.url} target="_blank" rel="noopener noreferrer">
+        {certificates.map((cert, i) => (
+          <a key={`${cert.mark}-${i}`} className="cert" href={cert.url} target="_blank" rel="noopener noreferrer">
             <div className="cert-top">
               <span className="no">{cert.mark}</span>
               {cert.category && <span className="cat">{cert.category}</span>}

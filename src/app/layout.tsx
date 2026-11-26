@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Hanken_Grotesk, JetBrains_Mono, Unbounded } from "next/font/google";
-import { site } from "@/data/site";
+import { getContent } from "@/lib/content";
 
 // Urutan impor CSS = urutan cascade. Jangan diacak.
 import "@/styles/tokens.css";
@@ -18,10 +18,20 @@ const unbounded = Unbounded({ subsets: ["latin"], weight: ["700"], variable: "--
 const hanken = Hanken_Grotesk({ subsets: ["latin"], weight: ["400", "600", "700"], variable: "--font-hanken", display: "swap" });
 const jetbrains = JetBrains_Mono({ subsets: ["latin"], weight: ["400", "600"], variable: "--font-jetbrains", display: "swap" });
 
-export const metadata: Metadata = {
-  title: site.name,
-  description: site.description,
-};
+// Gambar Open Graph dan Twitter diambil otomatis dari
+// src/app/opengraph-image.png dan src/app/twitter-image.png, ikon dari src/app/icon.svg.
+export async function generateMetadata(): Promise<Metadata> {
+  const { site } = await getContent();
+  const title = `${site.name} — ${site.role}`;
+  return {
+    metadataBase: new URL(site.url),
+    title,
+    description: site.description,
+    alternates: { canonical: "/" },
+    openGraph: { type: "website", locale: "id_ID", url: "/", siteName: site.name, title, description: site.description },
+    twitter: { card: "summary_large_image", title, description: site.description },
+  };
+}
 
 export const viewport: Viewport = {
   width: "device-width",

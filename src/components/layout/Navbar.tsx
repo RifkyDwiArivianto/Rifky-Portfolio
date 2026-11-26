@@ -1,14 +1,14 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { navLinks, site } from "@/data/site";
+import { navLinks } from "@/data/site";
 import { useScrollSpy } from "@/hooks/useScrollSpy";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { MobileMenu } from "./MobileMenu";
 
 const sectionIds = navLinks.map((link) => link.id);
 
-export function Navbar() {
+export function Navbar({ shortName }: { shortName: string }) {
   const active = useScrollSpy(sectionIds);
   const [menuOpen, setMenuOpen] = useState(false);
   const [hidden, setHidden] = useState(false);
@@ -33,7 +33,7 @@ export function Navbar() {
     <>
       <nav className={`nav${hidden ? " hide" : ""}`} aria-label="Navigasi utama" onFocus={() => setHidden(false)}>
         <strong>
-          {site.shortName}
+          {shortName}
           <span className="nav-dot">.</span>
         </strong>
         <ul>
@@ -66,7 +66,7 @@ export function Navbar() {
           </button>
         </div>
       </nav>
-      <MobileMenu open={menuOpen} active={active} openerRef={menuBtnRef} onClose={closeMenu} />
+      <MobileMenu shortName={shortName} open={menuOpen} active={active} openerRef={menuBtnRef} onClose={closeMenu} />
     </>
   );
 }

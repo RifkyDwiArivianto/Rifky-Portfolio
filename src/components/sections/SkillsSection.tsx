@@ -1,7 +1,7 @@
-import { skillGroups } from "@/data/skills";
+import type { SkillGroup } from "@/types";
 
 /** Kolom kanan bagian "Pengalaman": keahlian dan alat. Tingginya mengikuti kolom garis waktu. */
-export function SkillsColumn() {
+export function SkillsColumn({ skillGroups }: { skillGroups: SkillGroup[] }) {
   return (
     <div id="kemampuan">
       <div className="sec-head">
@@ -14,8 +14,8 @@ export function SkillsColumn() {
           <div key={group.id} className="sk">
             <h3>{group.title}</h3>
             <ul>
-              {group.items.map((item) => (
-                <li key={item.label}>
+              {group.items.map((item, i) => (
+                <li key={`${item.label}-${i}`}>
                   <button
                     type="button"
                     className={`chip${item.learning ? " learn" : ""}`}
