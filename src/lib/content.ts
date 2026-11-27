@@ -21,27 +21,39 @@ type Rows = Map<ContentKey, unknown>;
 const withTimeout = <T>(promise: Promise<T>, ms: number) =>
   Promise.race([promise, new Promise<never>((_, reject) => setTimeout(() => reject(new Error("timeout")), ms))]);
 
-/** `null` berarti Supabase tidak terjangkau (beda dengan "terjangkau tapi kosong"). */
-async function fetchRows(fresh: boolean): Promise<Rows | null> {
+const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
+/** Hasil membaca database: belum diatur, berhasil, atau gagal (ter-pause, jaringan, tabel belum dibuat). */
+type Fetched = { status: "unconfigured" } | { status: "ok"; rows: Rows } | { status: "error"; reason: string };
+
+async function fetchRows(fresh: boolean): Promise<Fetched> {
   const env = supabaseEnv();
-  if (!env) return null;
-  try {
-    const url = `${env.url}/rest/v1/site_content?select=key,value`;
-    const res = await withTimeout(
-      fetch(url, {
-        headers: authHeaders(env),
-        ...(fresh ? { cache: "no-store" as const } : { next: { revalidate: 60 } }),
-      }),
-      5000,
-    );
-    if (!res.ok) return null;
-    const rows = (await res.json()) as { key: string; value: unknown }[];
-    const map: Rows = new Map();
-    for (const row of rows) if (isContentKey(row.key)) map.set(row.key, row.value);
-    return map;
-  } catch {
-    return null;
+  if (!env) return { status: "unconfigured" };
+
+  let reason = "tidak diketahui";
+  // dua percobaan supaya gangguan sesaat tidak dianggap proyek mati
+  for (let attempt = 0; attempt < 2; attempt++) {
+    try {
+      const res = await withTimeout(
+        fetch(`${env.url}/rest/v1/site_content?select=key,value`, {
+          headers: authHeaders(env),
+          ...(fresh ? { cache: "no-store" as const } : { next: { revalidate: 60 } }),
+        }),
+        5000,
+      );
+      if (res.ok) {
+        const rows = (await res.json()) as { key: string; value: unknown }[];
+        const map: Rows = new Map();
+        for (const row of rows) if (isContentKey(row.key)) map.set(row.key, row.value);
+        return { status: "ok", rows: map };
+      }
+      reason = `Supabase membalas HTTP ${res.status}`;
+    } catch (error) {
+      reason = error instanceof Error && error.message === "timeout" ? "Supabase tidak menjawab dalam 5 detik" : "tidak bisa terhubung ke Supabase";
+    }
+    if (attempt === 0) await sleep(400);
   }
+  return { status: "error", reason };
 }
 
 function resolve(key: ContentKey, rows: Rows | null): unknown {
@@ -60,8 +72,24 @@ function assemble(rows: Rows | null): SiteContent {
   return content;
 }
 
-/** Dipakai halaman publik. `cache` menggabungkan pemanggilan dari layout dan halaman dalam satu render. */
-export const getContent = cache(async (): Promise<SiteContent> => assemble(await fetchRows(false)));
+/**
+ * Dipakai halaman publik. `cache` menggabungkan pemanggilan dari layout dan halaman dalam satu render.
+ *
+ * Pengaman "isi terakhir": bila Supabase SUDAH diatur tapi tidak terjangkau (ter-pause, mati, tabel hilang),
+ * di produksi fungsi ini sengaja melempar error. Next.js lalu tetap menayangkan halaman terakhir yang berhasil
+ * dibuat dan mencoba lagi pada kunjungan berikutnya, sehingga isi hasil editan di admin tidak tertimpa isi
+ * bawaan. Saat build, error yang sama menggagalkan deploy dengan pesan jelas, dan situs lama tetap tayang.
+ * Isi bawaan hanya dipakai bila Supabase memang belum diatur, atau saat pengembangan lokal.
+ */
+export const getContent = cache(async (): Promise<SiteContent> => {
+  const result = await fetchRows(false);
+  if (result.status === "ok") return assemble(result.rows);
+  if (result.status === "unconfigured" || process.env.NODE_ENV !== "production") return assemble(null);
+  throw new Error(
+    `Konten tidak bisa dibaca dari database (${result.reason}). Halaman terakhir dipertahankan. ` +
+      "Cek proyek Supabase (mungkin ter-pause: tekan Resume project) dan pastikan supabase/schema.sql sudah dijalankan.",
+  );
+});
 
 export interface AdminContent {
   values: Record<ContentKey, unknown>;
@@ -72,7 +100,8 @@ export interface AdminContent {
 }
 
 export async function getAdminContent(): Promise<AdminContent> {
-  const rows = await fetchRows(true);
+  const fetched = await fetchRows(true);
+  const rows = fetched.status === "ok" ? fetched.rows : null;
   const values = {} as Record<ContentKey, unknown>;
   const customized = {} as Record<ContentKey, boolean>;
   for (const key of CONTENT_KEYS) {

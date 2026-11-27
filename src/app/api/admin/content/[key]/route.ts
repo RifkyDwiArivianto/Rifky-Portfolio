@@ -5,6 +5,9 @@ import { DEFAULTS, isContentKey, sanitizeSection } from "@/lib/content-schema";
 
 type RouteContext = { params: Promise<{ key: string }> };
 
+// satu bagian konten jauh di bawah ini; batas ini mencegah permintaan raksasa
+const MAX_BODY = 1_000_000;
+
 /** Simpan satu bagian. Data divalidasi ketat; yang tersimpan adalah versi yang sudah dibersihkan. */
 export async function PUT(req: Request, { params }: RouteContext) {
   const denied = await guard(req);
@@ -15,7 +18,9 @@ export async function PUT(req: Request, { params }: RouteContext) {
 
   let raw: unknown;
   try {
-    raw = ((await req.json()) as { value?: unknown } | null)?.value;
+    const text = await req.text();
+    if (text.length > MAX_BODY) return json({ error: "Data terlalu besar." }, 413);
+    raw = (JSON.parse(text) as { value?: unknown } | null)?.value;
   } catch {
     return json({ error: "Data tidak valid." }, 400);
   }

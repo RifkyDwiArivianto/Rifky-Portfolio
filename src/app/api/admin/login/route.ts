@@ -11,7 +11,8 @@ export async function POST(req: Request) {
 
   let password = "";
   try {
-    const body = (await req.json()) as { password?: unknown };
+    const text = await req.text();
+    const body = text.length <= 10_000 ? (JSON.parse(text) as { password?: unknown }) : {};
     password = typeof body.password === "string" ? body.password : "";
   } catch {
     // body kosong atau bukan JSON: dianggap kata sandi salah

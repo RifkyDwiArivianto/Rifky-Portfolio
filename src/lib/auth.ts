@@ -2,7 +2,9 @@
 import { createHash, createHmac, timingSafeEqual } from "node:crypto";
 import { supabaseKey, supabaseUrl } from "./supabase";
 
-export const SESSION_COOKIE = "rda_admin";
+// Awalan __Host- (hanya di produksi, yang wajib HTTPS): browser menolak cookie ini bila dipasang dari
+// subdomain lain atau tanpa Secure, jadi sesi tidak bisa disisipkan dari luar.
+export const SESSION_COOKIE = process.env.NODE_ENV === "production" ? "__Host-rda_admin" : "rda_admin";
 export const SESSION_SECONDS = 60 * 60 * 24 * 7;
 
 const sha = (value: string) => createHash("sha256").update(value).digest();
