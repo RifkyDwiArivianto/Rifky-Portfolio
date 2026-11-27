@@ -8,14 +8,14 @@
 .contact p.eyebrow{margin:0 0 12px;max-width:none}
 .mail{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
 .mail+.mail{margin-top:var(--sp-2)}
-.mail-link{font-family:var(--f-mono);font-size:var(--t-s);color:inherit;background:color-mix(in srgb,var(--bg) 14%,transparent);padding:11px 14px;border-radius:12px;overflow-wrap:anywhere;text-decoration:underline;text-underline-offset:3px}
+.mail-link{font-family:var(--f-mono);font-size:var(--t-m);color:inherit;background:color-mix(in srgb,var(--bg) 14%,transparent);padding:11px 14px;border-radius:12px;overflow-wrap:anywhere;text-decoration:underline;text-underline-offset:3px}
 .msg-box{background:color-mix(in srgb,var(--bg) 9%,transparent);border:1px solid color-mix(in srgb,var(--bg) 22%,transparent);border-radius:18px;padding:var(--sp-3);display:grid;gap:12px}
-.msg-box h3{font-family:var(--f-mono);font-size:var(--t-xs);letter-spacing:.04em;opacity:.85}
-.msg-hint{margin:0;font-size:var(--t-xs)!important;line-height:1.5;opacity:.78}
+.msg-box h3{font-family:var(--f-mono);font-size:var(--t-s);letter-spacing:.04em;opacity:.85}
+.msg-hint{margin:0;font-size:var(--t-s)!important;line-height:1.5;opacity:.85}
 .topic-row{display:flex;gap:6px;flex-wrap:wrap}
-.topic-btn{min-height:34px;padding:5px 11px;border-radius:99px;border:1px solid color-mix(in srgb,var(--bg) 35%,transparent);background:transparent;color:var(--bg);font:600 var(--t-xs) var(--f-body);cursor:pointer}
+.topic-btn{min-height:40px;padding:6px 14px;border-radius:99px;border:1px solid color-mix(in srgb,var(--bg) 35%,transparent);background:transparent;color:var(--bg);font:600 var(--t-s) var(--f-body);cursor:pointer}
 .topic-btn[aria-pressed="true"]{background:var(--bg);color:var(--ink);border-color:var(--bg)}
-.msg-input{width:100%;min-height:70px;resize:vertical;border-radius:12px;border:1px solid color-mix(in srgb,var(--bg) 28%,transparent);background:color-mix(in srgb,var(--bg) 8%,transparent);color:var(--bg);padding:10px 12px;font:inherit;font-size:var(--t-s)}
+.msg-input{width:100%;min-height:96px;resize:vertical;border-radius:12px;border:1px solid color-mix(in srgb,var(--bg) 28%,transparent);background:color-mix(in srgb,var(--bg) 8%,transparent);color:var(--bg);padding:12px 14px;font:inherit;font-size:var(--t-m)}
 .msg-input::placeholder{color:color-mix(in srgb,var(--bg) 55%,transparent)}
 .contact .btn{border-color:var(--bg);color:var(--bg)}
 .contact .btn.primary{background:var(--bg);border-color:var(--bg);color:var(--ink)}

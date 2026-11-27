@@ -119,8 +119,14 @@ export function AdminApp({ initial, customized: initialCustomized, connected }: 
 
   async function logout() {
     if (anyDirty && !window.confirm("Ada perubahan yang belum disimpan. Tetap keluar?")) return;
-    await fetch("/api/admin/logout", { method: "POST" });
-    router.refresh();
+    try {
+      const res = await fetch("/api/admin/logout", { method: "POST" });
+      if (!res.ok) throw new Error();
+    } catch {
+      window.alert("Gagal keluar. Coba lagi.");
+      return;
+    }
+    window.location.assign("/admin");
   }
 
   const onChange = (value: unknown) => setValues((prev) => ({ ...prev, [active]: value }));
