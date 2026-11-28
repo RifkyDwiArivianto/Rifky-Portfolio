@@ -19,20 +19,11 @@ export const deviations = ["Goresan permukaan", "Dimensi di luar toleransi", "Wa
 
 /**
  * Gejala yang bisa dicentang di layar pemeriksaan. Nilai CF pakar dan pemetaan ke penyimpangan
- * adalah CONTOH untuk simulasi, bukan data dari sistem sebenarnya.
+ * adalah CONTOH untuk simulasi, bukan data dari sistem sebenarnya. Nilai CF pengguna selalu 1.
  */
 export const symptoms: { name: string; expert: number; target: number }[] = [
   { name: "Permukaan tergores", expert: 0.8, target: 0 },
   { name: "Ada bekas gesekan", expert: 0.6, target: 0 },
   { name: "Ukuran melebihi toleransi", expert: 0.9, target: 1 },
-  { name: "Bentuk melengkung", expert: 0.5, target: 1 },
   { name: "Warna tidak merata", expert: 0.7, target: 2 },
-  { name: "Permukaan kusam", expert: 0.4, target: 2 },
-];
-
-/** Tingkat keyakinan operator terhadap gejala yang dipilih (CF pengguna). */
-export const confidenceLevels: { label: string; value: number }[] = [
-  { label: "Yakin", value: 1 },
-  { label: "Cukup", value: 0.6 },
-  { label: "Ragu", value: 0.3 },
 ];

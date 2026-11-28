@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { confidenceLevels, deviations, symptoms, useCases } from "@/data/usecase";
+import { deviations, symptoms, useCases } from "@/data/usecase";
 import { diagnose } from "@/lib/certainty";
 import type { ReviewStatus } from "@/types";
 
@@ -12,17 +12,15 @@ interface MockScreenProps {
   onStatusChange: (status: ReviewStatus) => void;
 }
 
-const fmt = (n: number) => n.toFixed(2).replace(".", ",");
-
 function Who({ index }: { index: number }) {
   return <span className="who">Dipakai oleh: {useCases[index].actors.join(", ")}</span>;
 }
 
 /** Bar persentase tumbuh dari 0 setelah layar tampil. */
-function DiagnosisScreen({ selected, level, onSave }: { selected: number[]; level: number; onSave: () => void }) {
+function DiagnosisScreen({ selected, onSave }: { selected: number[]; onSave: () => void }) {
   const [ready, setReady] = useState(false);
-  // Certainty Factor dihitung dari gejala yang dipilih dan tingkat keyakinan operator
-  const results = diagnose(selected.map((i) => symptoms[i]), level);
+  // Certainty Factor dihitung dari gejala yang dipilih (nilai CF pengguna tetap 1)
+  const results = diagnose(selected.map((i) => symptoms[i]));
 
   useEffect(() => {
     let inner = 0;
@@ -57,16 +55,6 @@ function DiagnosisScreen({ selected, level, onSave }: { selected: number[]; leve
           </div>
         </div>
       ))}
-      {results[0] && (
-        <span className="calc">
-          {results[0].parts.length === 2
-            ? `${fmt(results[0].parts[0])} + ${fmt(results[0].parts[1])} × (1 − ${fmt(results[0].parts[0])}) = ${fmt(results[0].cf)}`
-            : results[0].parts.length > 2
-              ? `CF gabungan ${results[0].parts.length} gejala = ${fmt(results[0].cf)}`
-              : `CF pakar × CF pengguna = ${fmt(results[0].cf)}`}
-        </span>
-      )}
-      <span className="calc">Contoh perhitungan, nilai pakar bukan data sistem asli.</span>
       <button className="mbtn" type="button" onClick={onSave}>
         Simpan
       </button>
@@ -76,7 +64,6 @@ function DiagnosisScreen({ selected, level, onSave }: { selected: number[]; leve
 
 export function MockScreen({ index, status, onPick, onStatusChange }: MockScreenProps) {
   const [selected, setSelected] = useState<number[]>([0, 1, 2]);
-  const [level, setLevel] = useState(1);
   const toggle = (i: number) =>
     setSelected((current) => (current.includes(i) ? current.filter((n) => n !== i) : [...current, i].sort()));
 
@@ -102,20 +89,6 @@ export function MockScreen({ index, status, onPick, onStatusChange }: MockScreen
             </button>
           ))}
         </div>
-        <div className="row2" role="group" aria-label="Tingkat keyakinan operator">
-          <span className="who">Keyakinan:</span>
-          {confidenceLevels.map((item) => (
-            <button
-              key={item.label}
-              className="pill chk"
-              type="button"
-              aria-pressed={level === item.value}
-              onClick={() => setLevel(item.value)}
-            >
-              {item.label} {fmt(item.value)}
-            </button>
-          ))}
-        </div>
         <button className="mbtn" type="button" disabled={!selected.length} onClick={() => onPick(1)}>
           Periksa
         </button>
@@ -124,7 +97,7 @@ export function MockScreen({ index, status, onPick, onStatusChange }: MockScreen
     );
   }
 
-  if (index === 1) return <DiagnosisScreen selected={selected} level={level} onSave={() => onPick(2)} />;
+  if (index === 1) return <DiagnosisScreen selected={selected} onSave={() => onPick(2)} />;
 
   if (index === 2) {
     return (

@@ -15,8 +15,11 @@ export interface CfResult {
   parts: number[];
 }
 
+/** Nilai CF pengguna ditetapkan 1, jadi CF satu gejala sama dengan CF pakar. */
+export const USER_CF = 1;
+
 /** CF satu gejala = CF pakar × CF pengguna. */
-export const singleCf = (expert: number, user: number) => expert * user;
+export const singleCf = (expert: number, user: number = USER_CF) => expert * user;
 
 /** CF kombinasi dua nilai positif: CF1 + CF2 × (1 − CF1). */
 export const combineCf = (a: number, b: number) => a + b * (1 - a);
@@ -25,11 +28,11 @@ export const combineCf = (a: number, b: number) => a + b * (1 - a);
  * Menghitung CF tiap penyimpangan dari gejala yang dipilih. Gejala untuk penyimpangan yang sama
  * digabung berurutan dengan combineCf. Hasil diurutkan dari CF tertinggi.
  */
-export function diagnose(findings: Finding[], user: number): CfResult[] {
+export function diagnose(findings: Finding[]): CfResult[] {
   const byTarget = new Map<number, number[]>();
   for (const f of findings) {
     const list = byTarget.get(f.target) ?? [];
-    list.push(singleCf(f.expert, user));
+    list.push(singleCf(f.expert));
     byTarget.set(f.target, list);
   }
   return [...byTarget.entries()]
