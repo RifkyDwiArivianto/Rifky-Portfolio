@@ -1,28 +1,35 @@
 /* lightbox */
-.lb{position:fixed;inset:0;background:rgba(5,10,8,.88);z-index:50;display:grid;grid-template-rows:auto 1fr auto;padding:max(16px,env(safe-area-inset-top,0px)) 16px max(16px,env(safe-area-inset-bottom,0px));color:#fff}
+.lb{position:fixed;inset:0;background:rgba(5,10,8,.97);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);z-index:50;display:grid;grid-template-rows:auto 1fr auto;padding:max(16px,env(safe-area-inset-top,0px)) 16px max(16px,env(safe-area-inset-bottom,0px));color:#fff}
 .lb[hidden]{display:none}
 .lb-top{display:flex;justify-content:space-between;gap:12px;align-items:center}
 .lb-top b{font-family:var(--f-display);font-size:var(--t-m)}
 .lb-top small{display:block;font-family:var(--f-mono);opacity:.7}
-.lb .x,.lb .nv{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.3);border-radius:50%;width:44px;height:44px;font-size:var(--t-m);cursor:pointer}
-.lb .x:hover,.lb .nv:hover{background:#1f6b4a;color:#fff}
+.lb-top>div:first-child{min-width:0}
+/* tombol bulat: flex:none + aspect-ratio supaya tidak pernah menyempit jadi lonjong */
+.lb .x,.lb .nv{flex:none;display:grid;place-items:center;padding:0;aspect-ratio:1;background:rgba(255,255,255,.14);color:#fff;border:1.5px solid rgba(255,255,255,.38);border-radius:50%;width:48px;height:48px;cursor:pointer;transition:background-color .2s,border-color .2s,transform .15s var(--ease,ease)}
+.lb .x svg,.lb .nv svg{display:block;width:24px;height:24px}
+.lb .x:hover,.lb .nv:hover{background:#1f6b4a;border-color:#1f6b4a;color:#fff}
+.lb .x:active,.lb .nv:active{transform:scale(.92)}
+.lb .x:focus-visible,.lb .nv:focus-visible{outline:2px solid #fff;outline-offset:2px}
 .lb-main{display:flex;align-items:center;justify-content:center;gap:14px;min-height:0;min-width:0}
 .lb-main figure{margin:0;flex:1;min-width:0;height:100%;display:flex;align-items:center;justify-content:center}
 .lb-main img{max-height:100%;max-width:100%;object-fit:contain;border-radius:12px}
 .lb-thumbs{display:flex;gap:8px;justify-content:center;padding-top:12px}
-.lb-thumbs button{border:2px solid transparent;border-radius:8px;padding:0;background:none;cursor:pointer;opacity:.55}
+.lb-thumbs button{flex:none;border:2px solid transparent;border-radius:10px;padding:0;background:none;cursor:pointer;opacity:.55;overflow:hidden;transition:opacity .2s,border-color .2s}
+.lb-thumbs button:hover{opacity:.85}
 .lb-thumbs button[aria-current="true"]{border-color:var(--accent);opacity:1}
-.lb-thumbs img{height:54px;width:auto;display:block;border-radius:6px}
+/* semua thumbnail satu ukuran, gambar dipotong tengah */
+.lb-thumbs img{height:52px;width:78px;object-fit:cover;object-position:top;display:block}
 @media(max-width:860px){
   /* HP: gambar di baris atas, tombol kiri/kanan di baris sendiri di bawahnya, tidak menimpa gambar */
   .lb-main{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:minmax(0,1fr) auto;gap:10px 0}
   .lb-main figure{grid-row:1;grid-column:1/-1;min-height:0;overflow:hidden}
   .lb-main .prev{grid-row:2;grid-column:1;justify-self:start}
   .lb-main .next{grid-row:2;grid-column:2;justify-self:end}
-  .lb .nv{width:52px;height:52px}
+  .lb .nv{width:56px;height:56px}
   .lb-thumbs{overflow-x:auto;justify-content:flex-start;padding-bottom:4px}
   .lb-thumbs button{flex:none}
-  .lb-thumbs img{height:44px}
+  .lb-thumbs img{height:46px;width:68px}
 }
 @keyframes lbin{from{opacity:0}}
 .lb{animation:lbin .18s ease-out}

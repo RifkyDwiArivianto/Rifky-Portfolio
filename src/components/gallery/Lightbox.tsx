@@ -10,6 +10,19 @@ interface LightboxProps {
   onClose: () => void;
 }
 
+/** Ikon garis dengan ukuran dan ketebalan seragam, tidak bergantung pada font perangkat. */
+function Icon({ d }: { d: string }) {
+  return (
+    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
+      <path d={d} />
+    </svg>
+  );
+}
+
+const ICON_CLOSE = "M6 6l12 12M18 6L6 18";
+const ICON_PREV = "M19 12H5M11 6l-6 6 6 6";
+const ICON_NEXT = "M5 12h14M13 6l6 6-6 6";
+
 export function Lightbox({ title, images, onClose }: LightboxProps) {
   const [index, setIndex] = useState(0);
   const overlayRef = useRef<HTMLDivElement>(null);
@@ -80,14 +93,14 @@ export function Lightbox({ title, images, onClose }: LightboxProps) {
           </small>
         </div>
         <button ref={closeRef} className="x" type="button" aria-label="Tutup galeri" onClick={onClose}>
-          ✕
+          <Icon d={ICON_CLOSE} />
         </button>
       </div>
 
       <div className="lb-main" onClick={closeOnBackdrop}>
         {multi && (
           <button className="nv prev" type="button" aria-label="Gambar sebelumnya" onClick={() => step(-1)}>
-            ←
+            <Icon d={ICON_PREV} />
           </button>
         )}
         <figure onClick={closeOnBackdrop}>
@@ -103,7 +116,7 @@ export function Lightbox({ title, images, onClose }: LightboxProps) {
         </figure>
         {multi && (
           <button className="nv next" type="button" aria-label="Gambar berikutnya" onClick={() => step(1)}>
-            →
+            <Icon d={ICON_NEXT} />
           </button>
         )}
       </div>
@@ -118,7 +131,7 @@ export function Lightbox({ title, images, onClose }: LightboxProps) {
               aria-current={i === index}
               onClick={() => setIndex(i)}
             >
-              <Image src={image.src} alt="" width={image.width} height={image.height} sizes="80px" />
+              <Image src={image.src} alt="" width={image.width} height={image.height} sizes="96px" />
             </button>
           ))}
         </div>
